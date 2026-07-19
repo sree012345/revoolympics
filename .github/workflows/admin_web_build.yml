@@ -1,0 +1,8 @@
+# Placeholder
+name: Admin Web Build
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Admin web build workflow — implement in later sprint"

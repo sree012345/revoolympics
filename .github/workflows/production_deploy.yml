@@ -1,0 +1,9 @@
+# Placeholder — protected environment, requires approval
+name: Production Deploy
+on: workflow_dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: echo "Production deploy — implement in later sprint"

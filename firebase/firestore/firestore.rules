@@ -1,0 +1,10 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Deny all by default — explicit rules added in feature sprints.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

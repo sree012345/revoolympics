@@ -1,0 +1,21 @@
+name: revoolympics
+repository: https://github.com/Revolution-Games/revoolympics
+
+packages:
+  - apps/player_app
+  - apps/admin_web
+
+command:
+  bootstrap:
+    runPubGetInParallel: true
+
+scripts:
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Run Flutter analyze in all app packages.
+  test:
+    run: melos exec -- flutter test
+    description: Run Flutter tests in all app packages.
+  format:
+    run: melos exec -- dart format .
+    description: Format Dart source in all app packages.

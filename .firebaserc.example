@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "development": "revoolympics-dev",
+    "staging": "revoolympics-staging",
+    "production": "revoolympics-prod"
+  }
+}

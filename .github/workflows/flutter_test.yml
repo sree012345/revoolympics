@@ -1,0 +1,20 @@
+# Placeholder — full CI in later sprint
+name: Flutter Test
+
+on:
+  pull_request:
+    paths:
+      - 'apps/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: dart pub global activate melos
+      - run: melos bootstrap
+      - run: melos run test

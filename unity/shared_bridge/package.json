@@ -1,0 +1,7 @@
+{
+  "name": "com.revoolympics.shared-bridge",
+  "version": "0.0.1",
+  "displayName": "Revo Olympics Shared Bridge",
+  "description": "Flutter-Unity WebGL communication bridge for Revo Olympics games.",
+  "unity": "6000.0"
+}

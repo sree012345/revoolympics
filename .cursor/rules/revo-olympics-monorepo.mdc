@@ -1,0 +1,34 @@
+---
+description: Revo Olympics monorepo structure and boundaries
+alwaysApply: true
+---
+
+# Revo Olympics Repository
+
+Monorepo: `revoolympics`
+
+## Layout
+
+- `apps/player_app/` — Flutter player (main user app)
+- `apps/admin_web/` — Flutter Web admin
+- `apps/spectator_hub/` — Version 5 placeholder only
+- `unity/shared_bridge/` — Flutter–Unity WebGL bridge (shared)
+- `unity/game_templates/` — portrait and landscape templates
+- `unity/games/` — individual Unity WebGL games
+- `firebase/` — Functions, Firestore, Storage, Hosting, seed
+- `tools/` — webgl_validator, build_publisher, localization_validator
+- `docs/product/` — authoritative product rules
+
+## Architecture (fixed)
+
+- Flutter is the player application; Unity WebGL runs inside WebView
+- Official results validated by Cloud Functions only
+- No secrets in Git, Flutter assets, Unity Resources, or docs
+
+## Commits
+
+Use `type(scope): description` — see CONTRIBUTING.md
+
+## Scope
+
+Match work to the active sprint. Do not implement features from later versions without explicit approval.

@@ -1,0 +1,8 @@
+# Placeholder
+name: Unity Validation
+on: workflow_dispatch
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Unity validation — implement in later sprint"

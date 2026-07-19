@@ -1,0 +1,109 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Cursor local state
+.cursor/index/
+.cursor/cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+*.jks
+*.keystore
+key.properties
+*service-account*.json
+firebase-adminsdk-*.json
+
+# Flutter and Dart
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android
+.gradle/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# iOS and macOS
+Pods/
+DerivedData/
+Flutter/ephemeral/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Windows and Linux
+ephemeral/
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Bb]uild/
+[Bb]uilds/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Unity generated files
+sysinfo.txt
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+database-debug.log
+ui-debug.log
+
+# Emulator exports
+firebase/emulators/data/
+
+# WebGL outputs
+**/WebGLBuild/
+**/Builds/WebGL/
+**/Builds/WebGL*/
+
+# Build artifacts
+*.apk
+*.aab
+*.ipa
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp

@@ -1,0 +1,13 @@
+# Placeholder
+name: Firebase Rules Test
+on:
+  pull_request:
+    paths:
+      - 'firebase/firestore/**'
+      - 'firebase/storage/**'
+  workflow_dispatch
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Firebase rules tests — implement in later sprint"

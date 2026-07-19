@@ -1,0 +1,11 @@
+# Placeholder
+name: WebGL Validator Test
+on:
+  pull_request:
+    paths: ['tools/webgl_validator/**']
+  workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "WebGL validator tests — implement in later sprint"

@@ -1,0 +1,18 @@
+# Code owners — replace @placeholder-team with real GitHub users or teams
+
+/apps/player_app/           @Revolution-Games/flutter-team
+/apps/admin_web/            @Revolution-Games/flutter-team
+/apps/spectator_hub/        @Revolution-Games/flutter-team
+
+/unity/shared_bridge/       @Revolution-Games/unity-lead
+/unity/game_templates/      @Revolution-Games/unity-lead
+/unity/games/               @Revolution-Games/unity-team
+
+/firebase/functions/        @Revolution-Games/backend-lead
+/firebase/firestore/        @Revolution-Games/backend-lead
+/firebase/storage/          @Revolution-Games/backend-lead
+/firebase/hosting/          @Revolution-Games/devops-team
+
+/tools/                     @Revolution-Games/technical-architect
+/docs/product/              @Revolution-Games/product-owner
+/.github/workflows/         @Revolution-Games/devops-team

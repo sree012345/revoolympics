@@ -1,0 +1,9 @@
+# Placeholder — protected environment
+name: Staging Deploy
+on: workflow_dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - run: echo "Staging deploy — implement in later sprint"

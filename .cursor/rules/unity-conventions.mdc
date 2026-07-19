@@ -1,0 +1,14 @@
+---
+description: Unity and WebGL conventions for Revo Olympics games
+globs: unity/**/*.cs
+alwaysApply: false
+---
+
+# Unity Conventions
+
+- Unity 6.x; WebGL target; reuse `unity/shared_bridge/` — no duplicate bridge per game
+- Portrait (1080×1920) or landscape (1920×1080) per game configuration
+- Protocol version changes require coordinated Flutter and bridge updates
+- Unity calculates score/timer; does not assign official ranks or medals
+- No Firebase Admin credentials in Unity projects
+- Do not commit Library/, Temp/, Builds/, UserSettings/
