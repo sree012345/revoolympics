@@ -1,0 +1,73 @@
+---
+description: Modular architecture and dependency rules
+alwaysApply: true
+---
+
+# Modular Architecture Rules
+
+## Module principles
+
+Every module must have:
+
+- One clear responsibility
+- Defined public interfaces
+- Minimal dependencies
+- Testable business logic
+- No hidden cross-module state
+- Clear ownership
+
+## Approved layering
+
+```
+Presentation (UI)
+    ↓
+Application (controllers / state)
+    ↓
+Domain (use cases, models)
+    ↓
+Infrastructure (repositories, Firebase, HTTP)
+```
+
+Infrastructure must not control the domain model. Domain logic must not depend directly on Flutter widgets, WebView classes, Firebase UI objects, Unity scene objects, or HTTP framework request types.
+
+## Feature isolation
+
+Each feature should contain its own models, controllers/state, services, repositories, screens, widgets, and tests.
+
+Example (player app):
+
+```
+features/game_catalogue/
+├── data/
+├── domain/
+├── presentation/
+└── tests/
+```
+
+Admin app uses `lib/modules/` per project convention.
+
+## Shared code
+
+Move code to shared modules only when:
+
+- Used by multiple features
+- Stable enough to generalize
+- Free from feature-specific assumptions
+- Clearly documented
+
+Do not create an oversized `utils/` folder. Use focused categories: `validation`, `formatting`, `logging`, `networking`, `localization`.
+
+## UI and data access
+
+UI components must not communicate directly with Firestore for complex business operations. Use repositories and use cases.
+
+## Circular dependencies
+
+**Prohibited.** Use abstractions or shared domain contracts instead of cross-feature implementation imports.
+
+## Review checklist
+
+- [ ] Correct dependency direction
+- [ ] No circular dependencies
+- [ ] Business logic not in widgets or MonoBehaviours
+- [ ] Shared code justified and documented

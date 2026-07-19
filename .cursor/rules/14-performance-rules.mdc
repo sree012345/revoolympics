@@ -1,0 +1,50 @@
+---
+description: Performance rules for Flutter, Unity WebGL and Firebase
+alwaysApply: true
+---
+
+# Performance Rules
+
+## Flutter
+
+Avoid:
+
+- Rebuilding entire screens unnecessarily
+- Loading full Firestore collections
+- Large uncompressed images
+- Blocking UI thread
+- Repeated WebView recreation
+- Unbounded real-time listeners
+- Heavy processing in widget `build()`
+- Excessive nested scrolling
+
+Use pagination for large data. Cancel streams when no longer needed.
+
+## Unity WebGL
+
+Prioritize:
+
+- Small build size and controlled memory
+- Low allocation; mobile browser compatibility
+- Optimized textures and audio
+- Limited initial scene load; reduced shader variants
+- Efficient object pooling; lightweight bridge messages
+
+## Firebase
+
+Avoid:
+
+- Unindexed queries, hot documents, unbounded arrays
+- Excessive real-time listeners, N+1 reads
+- Repeated full leaderboard calculations
+- Large documents; excessive Function cold-start dependencies
+
+## Expensive operations
+
+Document: reason, expected volume, mitigation, monitoring plan.
+
+## Review checklist
+
+- [ ] Queries indexed where needed
+- [ ] Listeners bounded and cancelled
+- [ ] WebGL build size considerations noted for Unity changes

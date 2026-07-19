@@ -1,0 +1,51 @@
+---
+description: General development rules for all Revo Olympics code
+alwaysApply: true
+---
+
+# General Development Rules
+
+## Mandatory
+
+Before generating code:
+
+- Read relevant architecture and product documentation.
+- Follow the **current sprint scope**.
+- Prefer simple, maintainable solutions.
+- Reuse existing approved modules.
+- Preserve backward compatibility where required.
+- Use descriptive names; avoid unexplained magic values.
+- Validate external input and handle expected failure states.
+- Include tests for business logic.
+- Update documentation when behaviour changes.
+- State assumptions in comments or docs where necessary.
+- Preserve existing formatting unless refactoring is requested.
+- Avoid changing unrelated files.
+- Avoid new dependencies unless necessary; explain and pin versions.
+- Keep production code free from temporary debug code.
+
+## Prohibited
+
+- Rewriting a complete module when a focused change suffices.
+- Removing security checks to make tests pass.
+- Disabling null safety.
+- Swallowing exceptions or using empty catch blocks.
+- Using production credentials in examples.
+- Storing tokens in source code.
+- Creating duplicate models for the same contract without justification.
+- Creating circular module dependencies.
+- Adding global mutable state without architecture approval.
+- Performing privileged writes from a client.
+- Disabling tests or lint rules without explanation.
+- Committing generated build output.
+- Using placeholder implementations in production paths without marking them.
+- Claiming work complete when tests fail.
+- Introducing breaking protocol changes without versioning.
+
+## Review checklist
+
+- [ ] Matches sprint scope and allowed folders
+- [ ] No unrelated file changes
+- [ ] Tests added for behavioural changes
+- [ ] Documentation updated where required
+- [ ] No secrets or credentials introduced

@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "source": "firebase/functions",
+    "codebase": "revoolympics",
+    "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
+  },
   "firestore": {
     "rules": "firebase/firestore/firestore.rules",
     "indexes": "firebase/firestore/firestore.indexes.json"
@@ -13,6 +18,11 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
+      "target": "player",
+      "public": "firebase/hosting/player",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
       "target": "games",
       "public": "firebase/hosting/games",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
@@ -20,20 +30,32 @@
         {
           "source": "**/*.wasm",
           "headers": [{ "key": "Content-Type", "value": "application/wasm" }]
+        },
+        {
+          "source": "**/*.wasm.br",
+          "headers": [
+            { "key": "Content-Type", "value": "application/wasm" },
+            { "key": "Content-Encoding", "value": "br" }
+          ]
+        },
+        {
+          "source": "**/Build/**/*.js.br",
+          "headers": [{ "key": "Content-Encoding", "value": "br" }]
+        },
+        {
+          "source": "**/Build/**/*.data.br",
+          "headers": [{ "key": "Content-Encoding", "value": "br" }]
         }
       ]
     }
   ],
-  "functions": {
-    "source": "firebase/functions",
-    "predeploy": ["npm --prefix \"$RESOURCE_DIR\" run build"]
-  },
   "emulators": {
     "auth": { "port": 9099 },
     "functions": { "port": 5001 },
     "firestore": { "port": 8080 },
     "hosting": { "port": 5000 },
     "storage": { "port": 9199 },
-    "ui": { "enabled": true, "port": 4000 }
+    "ui": { "enabled": true, "port": 4000 },
+    "singleProjectMode": true
   }
 }

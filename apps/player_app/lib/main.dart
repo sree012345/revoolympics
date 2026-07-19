@@ -1,46 +1,85 @@
-// Revo Olympics Player Application
-//
-// Foundation Sprint F0.4 — structure only.
-// Version 1 implementation begins in Sprint 1.1.
-//
-// Planned folders:
-//   lib/app/       — app shell, routing, theme
-//   lib/core/      — config, firebase, localization, navigation
-//   lib/features/  — home, games, unity_player, settings, ...
-//   lib/shared/    — reusable widgets
-
 import 'package:flutter/material.dart';
 
+import 'core/environment/environment_banner.dart';
+import 'core/environment/environment_config.dart';
+import 'core/environment/environment_loader.dart';
+
 void main() {
-  runApp(const RevoOlympicsPlayerApp());
+  final result = EnvironmentLoader.load();
+  if (!result.isSuccess) {
+    runApp(EnvironmentErrorApp(message: result.errorMessage!));
+    return;
+  }
+
+  runApp(RevoOlympicsPlayerApp(config: result.config!));
 }
 
 class RevoOlympicsPlayerApp extends StatelessWidget {
-  const RevoOlympicsPlayerApp({super.key});
+  const RevoOlympicsPlayerApp({super.key, required this.config});
+
+  final EnvironmentConfig config;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Revo Olympics',
-      debugShowCheckedModeBanner: true,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return EnvironmentBanner(
+      config: config,
+      child: MaterialApp(
+        title: 'Revo Olympics',
+        debugShowCheckedModeBanner: config.debugLoggingEnabled,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: _PlaceholderHome(config: config),
       ),
-      home: const _PlaceholderHome(),
     );
   }
 }
 
 class _PlaceholderHome extends StatelessWidget {
-  const _PlaceholderHome();
+  const _PlaceholderHome({required this.config});
+
+  final EnvironmentConfig config;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Revo Olympics')),
-      body: const Center(
-        child: Text('Player app — Foundation structure (F0.4)'),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Environment: ${config.environmentName}'),
+            Text('Project: ${config.firebaseProjectId}'),
+            Text('Games: ${config.gameHostingBaseUrl}'),
+            const SizedBox(height: 16),
+            const Text('Foundation F0.5 — environment layer active.'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EnvironmentErrorApp extends StatelessWidget {
+  const EnvironmentErrorApp({super.key, required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              'Configuration error:\n$message',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
       ),
     );
   }

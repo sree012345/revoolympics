@@ -1,0 +1,68 @@
+---
+description: Firebase Cloud Functions, Firestore, Storage and Hosting rules
+globs: firebase/**/*
+alwaysApply: false
+---
+
+# Firebase Development Rules
+
+## Environment
+
+Every Firebase change must consider development, staging, and production. Same source deploys to all environments. **Do not** create `functions_dev/`, `functions_staging/`, `functions_prod/` copies.
+
+Use explicit project IDs for deploys: `firebase deploy --project revoolympics-dev`. Default must not be production.
+
+## Cloud Functions (TypeScript)
+
+- Strict mode
+- Input schemas and explicit authorization
+- Server timestamps for authoritative dates
+- Structured logging with correlation IDs
+- Idempotent operations (retries must not duplicate outcomes)
+- Transactions/batches where consistency requires
+- Environment parameters; Secret Manager for secrets
+- Named error codes; no raw stack traces to clients
+
+**Never trust:** client-provided role, institution ownership, official score status, rank, medal, or approval status.
+
+### Function structure
+
+```
+handler → validation → authorization → service → repository → audit/logging → response
+```
+
+### Error codes (examples)
+
+`SESSION_NOT_FOUND`, `ATTEMPT_LIMIT_EXCEEDED`, `RESULT_REJECTED`, `INSUFFICIENT_PERMISSION`, `INSTITUTION_SCOPE_MISMATCH`, `GAME_VERSION_NOT_ACTIVE`
+
+## Firestore rules
+
+- Deny by default
+- Validate authentication, roles, institution scope, immutable fields
+- Prevent direct official-result writes and client custom-claim assignment
+- Separate public and private data
+- Include emulator tests
+
+## Firestore data
+
+- Collection names: `lower_snake_case`
+- No environment suffixes in collection names (project isolation provides separation)
+- Server timestamps for authoritative dates
+- Avoid: large unbounded arrays, deeply nested data, hot documents, full collection scans, base64 files, private data in public collections
+
+## Storage rules
+
+Validate: authenticated user, path ownership, role, file type, file size, immutable version paths, public vs private location.
+
+## Audit logs
+
+Required for: role assignment, institution activation, result override, retry approval, disqualification, medal revocation, production game activation.
+
+## Review checklist
+
+- [ ] Input and authorization validated
+- [ ] Institution scope enforced
+- [ ] Idempotency considered
+- [ ] Rules updated and tested where needed
+- [ ] Audit log for sensitive operations
+- [ ] No secrets in source

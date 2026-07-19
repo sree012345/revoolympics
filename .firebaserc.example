@@ -1,7 +1,31 @@
 {
   "projects": {
-    "development": "revoolympics-dev",
+    "default": "revoolympics-dev",
+    "dev": "revoolympics-dev",
     "staging": "revoolympics-staging",
-    "production": "revoolympics-prod"
+    "prod": "revoolympics-prod"
+  },
+  "targets": {
+    "revoolympics-dev": {
+      "hosting": {
+        "admin": ["revoolympics-admin-dev"],
+        "player": ["revoolympics-player-dev"],
+        "games": ["revoolympics-games-dev"]
+      }
+    },
+    "revoolympics-staging": {
+      "hosting": {
+        "admin": ["revoolympics-admin-staging"],
+        "player": ["revoolympics-player-staging"],
+        "games": ["revoolympics-games-staging"]
+      }
+    },
+    "revoolympics-prod": {
+      "hosting": {
+        "admin": ["revoolympics-admin"],
+        "player": ["revoolympics-player"],
+        "games": ["revoolympics-games"]
+      }
+    }
   }
 }

@@ -1,0 +1,67 @@
+---
+description: File size and complexity limits — review signals
+alwaysApply: true
+---
+
+# File Size and Complexity Rules
+
+Limits are **review signals**, not reasons to split code into meaningless fragments. Goal: readability, testability, clear ownership, low coupling.
+
+## Dart (Flutter)
+
+| File type | Target | Hard review threshold |
+|-----------|--------|----------------------|
+| Widget | 200 lines | 300 lines |
+| Screen | 250 lines | 400 lines |
+| Controller/state | 250 lines | 400 lines |
+| Repository | 250 lines | 400 lines |
+| Model | 200 lines | 300 lines |
+| Service | 300 lines | 500 lines |
+| Test file | 400 lines | 700 lines |
+
+## Unity C#
+
+| File type | Target | Hard review threshold |
+|-----------|--------|----------------------|
+| MonoBehaviour | 250 lines | 400 lines |
+| Plain service | 300 lines | 500 lines |
+| Data model | 200 lines | 300 lines |
+| Editor script | 350 lines | 600 lines |
+| Test file | 400 lines | 700 lines |
+
+## TypeScript (Functions)
+
+| File type | Target | Hard review threshold |
+|-----------|--------|----------------------|
+| Function handler | 150 lines | 250 lines |
+| Service | 300 lines | 500 lines |
+| Repository | 250 lines | 400 lines |
+| Model/schema | 200 lines | 300 lines |
+| Test file | 400 lines | 700 lines |
+
+## Functions (methods)
+
+- Target under 40 lines; mandatory review above ~60 lines
+- Maximum nesting depth of three levels
+- Prefer fewer than six parameters; use parameter objects for complex operations
+- One responsibility per function
+
+## Refactor when a file has
+
+- Multiple unrelated classes or responsibilities
+- Repeated conditional logic or deep nesting
+- Excessive boolean flags or constructor dependencies
+- UI, business logic and persistence together
+- Protocol parsing mixed with game logic
+
+## Prohibited artificial splitting
+
+- One-line wrapper files
+- Excessive micro-classes or meaningless abstractions
+- Interfaces with one implementation and no architectural need
+- Deep folder nesting without benefit
+
+## Review checklist
+
+- [ ] File size within thresholds or refactor justified
+- [ ] Single clear responsibility per file

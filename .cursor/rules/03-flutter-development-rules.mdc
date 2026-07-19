@@ -1,0 +1,83 @@
+---
+description: Flutter coding conventions for Revo Olympics apps
+globs: apps/**/*.dart
+alwaysApply: false
+---
+
+# Flutter Development Rules
+
+## Structure
+
+- Player app: `lib/features/` for features; `lib/shared/` for shared UI; `lib/core/` for global services
+- Admin app: `lib/modules/` for modules; `lib/core/` for global services
+- Environment config: `lib/core/environment/` — no hardcoded Firebase project IDs in feature code
+- Support `dev`, `staging`, `prod` flavours with `REVO_ENV` dart-define
+
+## Language
+
+- Sound null safety (required)
+- Explicit return types
+- `const` constructors where appropriate
+- Immutable data models where practical
+- Named parameters for complex constructors
+- Sealed classes or enums for finite states
+- Typed exceptions and failure objects
+- Repository abstraction for data access
+
+Avoid: `dynamic` (unless integration requires it), excessive `late`, forced `!`, business logic in `build()`, giant stateful widgets, fire-and-forget futures, uncontrolled singletons, direct Firestore from presentation widgets.
+
+## Null safety
+
+Never use `!` merely to silence analysis errors. Validate presence, use nullable types when absence is valid, return structured errors when absence is invalid.
+
+```dart
+// Wrong
+final game = gameSnapshot.data!;
+
+// Preferred
+final game = gameSnapshot.data;
+if (game == null) {
+  return const GameLoadFailureView();
+}
+```
+
+## Screen state
+
+Every remote-data screen must support: `initial`, `loading`, `success`, `empty`, `error`, `unauthorized`, `offline` (where relevant). Never show a blank page on failure.
+
+## Navigation
+
+Use centralized route definitions. Protected routes must check authentication, role, permission, institution scope, and feature availability. Hiding a menu item is not sufficient authorization.
+
+## Firebase access (client)
+
+**May:** read authorized data, submit through approved repositories, call trusted Cloud Functions, upload permitted media, listen to permitted real-time updates.
+
+**Must not:** assign custom claims, finalize official results, write official rank, award medals, activate production game builds, change protected tournament rules, approve privileged roles.
+
+## WebView (Unity)
+
+- Use approved game URLs; validate environment, game ID and version
+- Restrict navigation; handle loading timeout and bridge errors
+- Restore device orientation; dispose resources correctly
+- Never expose privileged tokens in URL
+- Use versioned Flutter–Unity protocol
+
+## Localization
+
+User-facing text must use localization keys (see rule 13). No hardcoded English in production UI paths.
+
+## Naming
+
+- Files: `lower_snake_case.dart`
+- Classes: `UpperCamelCase`
+- Variables: `lowerCamelCase`
+- Private fields: `_lowerCamelCase`
+
+## Review checklist
+
+- [ ] Null safety preserved
+- [ ] Loading / empty / error states present
+- [ ] No privileged client writes
+- [ ] Localization keys used
+- [ ] Widget complexity within limits (rule 11)

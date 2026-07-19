@@ -1,25 +1,26 @@
 # Seed Data
 
-Environment-specific seed data for development and testing.
+Environment-specific seed data for development, staging, and production bootstrap.
 
 ## Directories
 
 | Path | Purpose |
 |------|---------|
-| `dev/` | Development emulator seed |
-| `test/` | Automated test fixtures |
-| `staging/` | Staging bootstrap (explicit approval) |
-| `fixtures/` | Shared JSON fixtures |
-| `scripts/` | Seed scripts |
+| `development/` | Replaceable dev fixtures and sample institutions |
+| `staging/` | Controlled QA fixtures |
+| `production/` | Minimal system seed definitions only |
 
 ## Rules
 
 - No real student information
 - No real passwords
 - No production contact details
-- Production seeding requires explicit confirmation
-- Scripts must display target environment before writing
+- Production seeding requires `--confirm-production` and authorization
+- Scripts must display target environment and project ID before writing
+- Development seed must include system `general` institution per product rules
 
-## General Institution
+## Firestore metadata
 
-Development seed must include system `general` institution per product rules.
+Each environment writes a `system/environment` document matching `system_environment.json` in the corresponding seed folder.
+
+See [firebase_environment_setup.md](../../docs/development/firebase_environment_setup.md).

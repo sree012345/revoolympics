@@ -1,0 +1,8 @@
+{
+  "environment": "staging",
+  "projectId": "revoolympics-staging",
+  "application": "revoolympics",
+  "isProduction": false,
+  "seedVersion": "0.0.0-f0.5",
+  "notes": "Controlled QA fixtures only."
+}

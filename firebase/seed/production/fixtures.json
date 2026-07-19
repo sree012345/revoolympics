@@ -1,0 +1,17 @@
+{
+  "allowedSeedTypes": [
+    "general_institution",
+    "platform_roles",
+    "supported_languages",
+    "avatar_catalogue",
+    "team_logo_catalogue",
+    "core_platform_settings"
+  ],
+  "forbiddenSeedTypes": [
+    "sample_players",
+    "demonstration_tournament_results",
+    "qa_accounts",
+    "test_passwords"
+  ],
+  "requiresFlag": "--confirm-production"
+}

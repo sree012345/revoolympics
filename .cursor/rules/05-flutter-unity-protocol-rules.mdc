@@ -1,0 +1,68 @@
+---
+description: Flutter–Unity WebGL bridge protocol rules
+globs: "{unity/shared_bridge/**,apps/**/lib/**/unity/**,docs/game_integration/**}"
+alwaysApply: false
+---
+
+# Flutter–Unity Protocol Rules
+
+## Source of truth
+
+- Human-readable: `docs/game_integration/flutter_unity_protocol.md`
+- Machine-readable schema: approved contracts location (planned under repository contracts)
+
+## Message envelope
+
+Every protocol message must contain:
+
+```json
+{
+  "protocolVersion": 1,
+  "messageType": "SCORE_UPDATE",
+  "messageId": "unique-message-id",
+  "timestamp": 0,
+  "sessionId": "session-id",
+  "payload": {}
+}
+```
+
+## Supported message types
+
+**Unity → Flutter:** `UNITY_READY`, `GAME_STARTED`, `SCORE_UPDATE`, `TIMER_UPDATE`, `PROGRESS_UPDATE`, `GAME_COMPLETED`, `GAME_FAILED`, `GAME_ERROR`, `QUIT_REQUESTED`, `HEARTBEAT`
+
+**Flutter → Unity:** `INIT_GAME`, `SET_LANGUAGE`, `START_GAME`, `PAUSE_GAME`, `RESUME_GAME`, `QUIT_GAME`, `UPDATE_SESSION`
+
+## Protocol rules
+
+- Every message includes `protocolVersion`
+- Unknown message types handled safely
+- Malformed JSON must not crash the application
+- Duplicate messages handled where idempotency matters
+- `sessionId` must match active game session; reject messages from closed sessions
+- Official result acceptance occurs only after backend validation
+- Breaking changes require protocol-version increment
+- New optional fields must preserve backward compatibility
+- Event names must not be renamed silently
+
+## Security
+
+Do **not** send in URL parameters or bridge payloads:
+
+- Firebase ID token
+- Service credentials
+- Admin tokens
+- Private keys
+- Unnecessary personal data
+
+Use approved short-lived session authorization; WebGL build must not gain privileged backend access.
+
+## Shared bridge
+
+Game-specific logic stays in individual games. Do not put game-specific logic in `unity/shared_bridge/`.
+
+## Review checklist
+
+- [ ] Protocol doc updated for message changes
+- [ ] Version incremented for breaking changes
+- [ ] Session validation enforced
+- [ ] No privileged tokens in URLs

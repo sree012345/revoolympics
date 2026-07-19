@@ -1,0 +1,62 @@
+---
+description: Official result integrity — backend authority only
+alwaysApply: true
+---
+
+# Result Integrity Rules
+
+## Backend authority only
+
+Only trusted backend processes may create or modify:
+
+- Official result status, adjusted score, adjusted time
+- Official rank, tournament points, medal assignment
+- Overall Champion, Runner-up, final leaderboard
+- Disqualification decision, retry approval
+
+## Client may submit
+
+- Game session request
+- Raw gameplay score, elapsed time, completion state
+- Checkpoints, penalties, game telemetry, quit reason, technical errors
+
+## Prohibited client writes
+
+Clients must **not** directly write: `official_results`, `final_leaderboards`, `medals`, `champions`, `approved_results`, `disqualifications`, `retry_approvals`.
+
+Controlled request documents are permitted only when security rules and backend processing allow.
+
+## Required result flow
+
+```
+Create authorized session
+  → Run Unity game
+  → Submit raw result
+  → Validate session and participant
+  → Validate game and build
+  → Validate score, time, completion
+  → Store accepted provisional result
+  → Calculate leaderboard
+  → Administrative review where required
+  → Finalize result
+  → Generate medals and tournament points
+```
+
+## Never trust the client for
+
+Player role, institution ownership, attempt count, tournament availability, build approval, completion validity, rank, medal, finalization.
+
+## Idempotency
+
+Result submission must use a unique identifier. Duplicate submission must not create duplicate official results.
+
+## Audit
+
+Every privileged result change must record: actor, action, reason, before/after values, timestamp, related result, environment.
+
+## Review checklist
+
+- [ ] No client-side official rank/medal/finalization
+- [ ] Backend validation before official status
+- [ ] Idempotency key present for submissions
+- [ ] Audit trail for privileged changes

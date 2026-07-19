@@ -1,0 +1,15 @@
+{
+  "name": "production",
+  "displayName": "Revo Olympics Production",
+  "projectId": "revoolympics-prod",
+  "isProduction": true,
+  "functionsRegion": "asia-south1",
+  "hostingTargets": {
+    "admin": "revoolympics-admin",
+    "player": "revoolympics-player",
+    "games": "revoolympics-games"
+  },
+  "storageBucket": "revoolympics-prod.firebasestorage.app",
+  "analyticsEnabled": true,
+  "appCheckMode": "enforced"
+}

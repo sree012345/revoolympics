@@ -12,6 +12,8 @@ Official product rules and scope for Revo Olympics.
 | [Competition & Ranking Rules](./revo_olympics_competition_ranking_rules.md) | F0.2 |
 | [Result Status Rules](./revo_olympics_result_status_rules.md) | F0.2 |
 | [Points Table Examples](./revo_olympics_points_table_examples.md) | F0.2 |
+| [Foundation Completion Gate](./foundation_completion_gate.md) | F0.6 |
+| [Foundation Approval Record](./foundation_approval_record.md) | F0.6 |
 
 ## Authority
 

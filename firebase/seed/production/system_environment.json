@@ -1,0 +1,8 @@
+{
+  "environment": "production",
+  "projectId": "revoolympics-prod",
+  "application": "revoolympics",
+  "isProduction": true,
+  "seedVersion": "0.0.0-f0.5",
+  "notes": "Minimal system seed only. No sample players or fake tournament results."
+}

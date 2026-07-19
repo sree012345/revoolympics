@@ -1,0 +1,60 @@
+---
+description: Core Revo Olympics product and architecture rules
+alwaysApply: true
+---
+
+# Revo Olympics Core Rules
+
+Revo Olympics is a multi-game competition platform.
+
+## Approved architecture
+
+- Flutter is the player-facing application.
+- Flutter Web is the administration application.
+- Unity 6.x WebGL provides embedded gameplay.
+- Unity games run inside Flutter-controlled WebViews.
+- Firebase provides Authentication, Firestore, Storage, Hosting, Cloud Functions, Analytics, Cloud Messaging and related backend services.
+- Development, Staging and Production use **separate Firebase projects**.
+- Official results are validated and finalized by trusted backend logic.
+- The client must never be treated as the authority for official results, rankings, medals or tournament winners.
+
+## Approved repository
+
+- `apps/player_app`
+- `apps/admin_web`
+- `apps/spectator_hub` (Version 5 placeholder)
+- `unity/shared_bridge`
+- `unity/game_templates`
+- `unity/games`
+- `firebase/functions`, `firestore`, `storage`, `hosting`, `seed`
+- `tools/webgl_validator`, `build_publisher`, `localization_validator`
+- `docs`, `tests`, `scripts`
+
+## Permanent requirements
+
+- Preserve modular architecture.
+- Do not mix player, admin, Unity and backend responsibilities.
+- Do not create hardcoded credentials.
+- Do not write official results directly from Flutter or Unity.
+- Do not silently modify product rules.
+- Do not connect Development or Staging code to Production by default.
+- Do not create duplicate environment-specific source trees (`functions_dev/`, etc.).
+- Do not generate application features outside the current sprint scope.
+- Include tests and documentation for behavioural changes.
+- Ask for clarification only when a missing requirement prevents safe implementation; otherwise follow approved project documents in `docs/product/` and `docs/architecture/`.
+
+## Rule priority (when conflicts arise)
+
+1. Product and architecture rules
+2. Security and result-integrity rules
+3. Technology-specific rules
+4. Testing and documentation rules
+5. Style and file-size rules
+
+## Foundation gate
+
+No Version 1 feature-development sprint begins until the Foundation Completion Gate is approved. See `docs/product/foundation_completion_gate.md`.
+
+## Commits
+
+Use `type(scope): description` — see `CONTRIBUTING.md`.

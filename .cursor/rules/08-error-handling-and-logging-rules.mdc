@@ -1,0 +1,62 @@
+---
+description: Error handling and structured logging rules
+alwaysApply: true
+---
+
+# Error Handling and Logging Rules
+
+## Error categories
+
+Use structured categories: `validation`, `authentication`, `authorization`, `network`, `timeout`, `configuration`, `integration`, `data`, `gameRuntime`, `firebase`, `security`, `unknown`.
+
+## Every error path must define
+
+- Technical error code
+- User-safe message
+- Log severity
+- Retry eligibility
+- Whether support action is required
+- Whether audit logging is required
+
+## Prohibited
+
+- Ignoring errors or empty catch blocks
+- Returning null for every failure
+- Displaying stack traces to users
+- Vague "Something went wrong" when a safer specific message exists
+- Infinite retries
+- Treating security failures as normal network errors
+
+## Log levels
+
+`debug`, `info`, `warning`, `error`, `critical` — reduce debug in production.
+
+## Structured log fields (where relevant)
+
+`environment`, `application`, `module`, `operation`, `requestId`, `sessionId`, `playerIdHash`, `institutionId`, `gameId`, `gameVersion`, `tournamentId`, `errorCode`
+
+Avoid logging sensitive personal identifiers directly.
+
+## Flutter
+
+- Map errors to user-safe messages
+- Integrate crash reporting where enabled
+- Suppress debug logging in production
+- No uncontrolled `print()` in production code
+
+## Unity
+
+- Avoid per-frame logging
+- Use consistent categories; include game and protocol versions
+- Report bridge failures clearly; avoid private session payloads in logs
+
+## Firebase Functions
+
+Use structured logger APIs. Critical operations: start/success/failure logs, correlation ID, duration where useful.
+
+## Review checklist
+
+- [ ] All failure paths handled
+- [ ] User-safe messages defined
+- [ ] No sensitive data in logs
+- [ ] Audit logging for privileged failures where required

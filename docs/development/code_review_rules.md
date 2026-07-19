@@ -1,5 +1,7 @@
 # Code Review Rules
 
+See also [ai_generated_code_review.md](./ai_generated_code_review.md) and `.cursor/rules/15-definition-of-done.mdc`.
+
 ## Required Review Areas
 
 - Correct sprint scope

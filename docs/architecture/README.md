@@ -9,7 +9,8 @@ System architecture documents for Revo Olympics.
 | Overall architecture | See [product rules](../product/revo_olympics_product_rules.md) §2 |
 | Flutter architecture | Version 1 sprint |
 | Unity architecture | Version 1 sprint |
-| Firebase architecture | Sprint F0.5 |
+| Firebase architecture | [firebase_environment_architecture.md](firebase_environment_architecture.md) (Sprint F0.5) |
+| Analytics events | [analytics_event_schema.md](analytics_event_schema.md) |
 | Security architecture | [secret_handling.md](../development/secret_handling.md) |
 | WebGL publishing | Version 1 sprint |
 | Spectator architecture | Version 5 |

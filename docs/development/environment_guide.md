@@ -40,10 +40,16 @@ Development and staging player/admin builds should display **DEV** or **STAGING*
 
 ## Switching Methods
 
-- Flutter flavours / `--dart-define`
-- Firebase project alias (`firebase use development`)
+- Flutter flavours / `--dart-define=REVO_ENV=...`
+- Firebase project alias (`firebase use dev|staging|prod`)
 - CI environment variables
-- Deployment scripts with explicit `--env` flag
+- Deployment scripts with explicit `--project` flag
+
+## Detailed guides (Sprint F0.5)
+
+- [firebase_environment_setup.md](./firebase_environment_setup.md)
+- [firebase_environment_switching.md](./firebase_environment_switching.md)
+- [firebase_local_emulator_setup.md](./firebase_local_emulator_setup.md)
 
 ## Rules
 

@@ -1,0 +1,19 @@
+{
+  "institutions": [
+    {
+      "id": "general",
+      "name": "General Institution",
+      "type": "system",
+      "description": "Platform-wide participation institution per product rules."
+    },
+    {
+      "id": "sample_school",
+      "name": "Sample School",
+      "type": "school",
+      "description": "Development-only test institution."
+    }
+  ],
+  "games": [],
+  "admins": [],
+  "notes": "Populate after Firebase projects exist. Passwords must not be committed."
+}

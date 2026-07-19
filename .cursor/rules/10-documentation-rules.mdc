@@ -1,0 +1,50 @@
+---
+description: Documentation requirements for code and protocol changes
+alwaysApply: true
+---
+
+# Documentation Rules
+
+## Required documentation for
+
+- Public shared APIs
+- Flutter–Unity protocol changes
+- Firestore schema changes
+- Security-rule changes
+- New Cloud Functions
+- New environment variables and secrets (names only in Git; values in Secret Manager)
+- New deployment commands
+- Breaking changes, game integration requirements, build publication changes
+- Data migrations, new error codes, new analytics events
+
+## Locations
+
+| Topic | Path |
+|-------|------|
+| Product rules | `docs/product/` |
+| Architecture | `docs/architecture/` |
+| Development | `docs/development/` |
+| Testing | `docs/testing/` |
+| Operations | `docs/operations/` |
+| Game integration | `docs/game_integration/` |
+| Prompts | `docs/prompts/` |
+
+## Code comments
+
+Explain **why**, constraints, non-obvious decisions, security assumptions, compatibility behaviour. Do not repeat obvious code.
+
+Good: *Use the locally displayed score only for gameplay feedback. The backend recalculates result eligibility before ranking.*
+
+## README requirements (major modules)
+
+Purpose, responsibilities, dependencies, setup, testing, limitations, ownership, related documents.
+
+## Pull requests
+
+Update relevant README, architecture doc, protocol changelog, schema doc, and release notes as applicable.
+
+## Review checklist
+
+- [ ] Behavioural changes documented
+- [ ] Protocol/schema docs updated if changed
+- [ ] No secrets in documentation examples

@@ -1,0 +1,57 @@
+---
+description: Definition of Done for Revo Olympics tasks
+alwaysApply: true
+---
+
+# Definition of Done
+
+A task is complete **only** when all apply:
+
+## Implementation
+
+- [ ] Scope implemented as specified in sprint/task
+- [ ] Architecture rules followed (modular layering, approved stack)
+- [ ] Only allowed folders modified
+- [ ] No unrelated file changes
+
+## Quality
+
+- [ ] Null safety preserved (Dart/C#)
+- [ ] Errors handled with structured codes and user-safe messages
+- [ ] Logging appropriate; no sensitive data logged
+- [ ] File sizes within review thresholds or refactor planned
+- [ ] No `// ignore` or disabled lint without justification
+
+## Security
+
+- [ ] Security reviewed for trust-boundary changes
+- [ ] No secrets committed
+- [ ] No privileged client writes
+- [ ] Correct environment targeted (no silent production default)
+
+## Testing
+
+- [ ] Tests added for behavioural changes
+- [ ] Tests pass
+- [ ] Static analysis passes
+- [ ] Formatting passes
+
+## Documentation
+
+- [ ] README, schema, protocol, or architecture docs updated as applicable
+- [ ] Environment or migration impact documented
+- [ ] No TODO blocking critical behaviour
+
+## Review
+
+- [ ] Pull request checklist complete
+- [ ] Human code review approved (required for all merges; mandatory for AI-generated code)
+
+## Prohibited "done" states
+
+- Compiles but tests failing
+- Placeholder in production path without explicit marking
+- Missing documentation for protocol/schema/security changes
+- Feature work started before Foundation Completion Gate approval (Version 1+)
+
+See `docs/development/definition_of_done.md` for the full checklist.

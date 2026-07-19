@@ -1,0 +1,41 @@
+---
+description: Localization rules for Flutter and Unity user-facing text
+globs: "{apps/**/*.dart,unity/**/*.cs}"
+alwaysApply: false
+---
+
+# Localization Rules
+
+## No hardcoded user-facing text
+
+Flutter and Unity user-facing strings must use localization keys.
+
+**Exceptions:** debug-only developer output, technical identifiers, approved brand names, data from backend localization fields.
+
+## Language architecture
+
+Version 1 must support architecture for English and scheduled Indian languages per product rules. Individual language completion may be staged; do not assume English-only layouts.
+
+## Requirements
+
+- Stable localization keys
+- Preserve placeholders in translations
+- Support text expansion; avoid fixed-width buttons for translated text
+- Support Unicode correctly
+- Plan for RTL where applicable
+- Validate missing keys
+- Align Flutter and Unity terminology using `docs/product/revo_olympics_terminology_glossary.md`
+
+## Prohibited
+
+- Building sentences through concatenated translated fragments
+- Using English text as the localization key
+- Embedding user-facing text in images where avoidable
+- Assuming all names use Latin characters
+- Truncating text without accessible alternatives
+
+## Review checklist
+
+- [ ] User-facing strings use keys
+- [ ] Placeholders preserved
+- [ ] Glossary terminology consistent

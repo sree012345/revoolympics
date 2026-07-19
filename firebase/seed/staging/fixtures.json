@@ -1,0 +1,12 @@
+{
+  "institutions": [
+    {
+      "id": "general",
+      "name": "General Institution",
+      "type": "system"
+    }
+  ],
+  "qaInstitutions": [],
+  "qaUsers": [],
+  "notes": "Load through approved staging seed scripts only."
+}

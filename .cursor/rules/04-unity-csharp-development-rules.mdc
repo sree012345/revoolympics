@@ -1,0 +1,90 @@
+---
+description: Unity C# and WebGL conventions for Revo Olympics games
+globs: unity/**/*.cs
+alwaysApply: false
+---
+
+# Unity C# Development Rules
+
+## Version and target
+
+- Unity **6.x**
+- WebGL target unless module is explicitly platform-specific
+- Reuse `unity/shared_bridge/` — no duplicate bridge per game
+- Portrait (1080×1920) or landscape (1920×1080) per game configuration
+
+## C# standards
+
+- PascalCase for classes and public members
+- camelCase for local variables and parameters
+- `_camelCase` for private serialized fields where adopted
+- Explicit access modifiers; `readonly` where possible
+- Interfaces for replaceable systems
+- ScriptableObjects for approved configuration
+- Assembly definitions for module boundaries
+- XML documentation for public shared APIs where useful
+
+## Folder structure (per game)
+
+```
+Assets/RevoOlympics/
+├── Core/
+├── Gameplay/
+├── UI/
+├── Integration/
+├── Audio/
+├── Art/
+├── Scenes/
+├── ScriptableObjects/
+└── Tests/
+```
+
+Separate assemblies: Core, Gameplay, UI, Integration, Editor, Tests.
+
+## MonoBehaviour vs plain C#
+
+**MonoBehaviour:** Unity lifecycle, scene integration, GameObject behaviour, input callbacks, presentation coordination.
+
+**Plain C# classes:** score calculations, validation, data transformation, ranking-independent game rules, protocol serialization, testable domain logic.
+
+A MonoBehaviour must not become a general-purpose service locator.
+
+## Null handling
+
+Validate required serialized references in Awake, editor validation, import validation, and tests. Use clear errors (e.g. `FlutterBridge requires a GameSessionController reference.`). Do not allow vague `NullReferenceException` during gameplay.
+
+## Update loop
+
+Do not place expensive operations in `Update` / `LateUpdate` / `FixedUpdate` without justification. Avoid: repeated `Find`, repeated `GetComponent`, per-frame JSON serialization, per-frame allocations, per-frame logging, LINQ in critical loops.
+
+## Coroutines and events
+
+- Support cancellation or scene exit where applicable
+- Handle exceptions; avoid updating destroyed objects
+- Every subscription must have matching unsubscription (`OnEnable` → subscribe, `OnDisable` → unsubscribe)
+
+## WebGL compatibility
+
+Before adding APIs or packages, verify WebGL support, browser restrictions, threading assumptions, file-system assumptions, and mobile-browser behaviour.
+
+## Game results
+
+Unity may send: raw score, elapsed time, completion status, penalty details, checkpoints, game-specific telemetry.
+
+Unity must **not** send trusted declarations such as `officialRank`, `officialMedal`, `isTournamentWinner`.
+
+Unity calculates gameplay data; it does not declare the official platform result.
+
+## Prohibited in repo
+
+- Firebase Admin credentials
+- `Library/`, `Temp/`, `Builds/`, `UserSettings/` commits
+- Hardcoded local IP URLs
+
+## Review checklist
+
+- [ ] WebGL compatible
+- [ ] Shared bridge used; protocol version documented if changed
+- [ ] No official-result authority in Unity
+- [ ] Event subscriptions cleaned up
+- [ ] No expensive uncontrolled frame logic

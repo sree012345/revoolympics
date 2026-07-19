@@ -1,0 +1,15 @@
+{
+  "name": "staging",
+  "displayName": "Revo Olympics Staging",
+  "projectId": "revoolympics-staging",
+  "isProduction": false,
+  "functionsRegion": "asia-south1",
+  "hostingTargets": {
+    "admin": "revoolympics-admin-staging",
+    "player": "revoolympics-player-staging",
+    "games": "revoolympics-games-staging"
+  },
+  "storageBucket": "revoolympics-staging.firebasestorage.app",
+  "analyticsEnabled": true,
+  "appCheckMode": "enforced_test"
+}

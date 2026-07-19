@@ -1,0 +1,42 @@
+---
+description: Testing requirements for Flutter, Unity and Firebase
+alwaysApply: true
+---
+
+# Testing Rules
+
+## General
+
+Behavioural code is not complete without tests. Generate tests when creating:
+
+- Business rules, validation, data transformation
+- Ranking-related configuration
+- Security rules, Cloud Functions, protocol serialization
+- Error mapping, state controllers, repository logic
+
+**Never** modify a test merely to match incorrect implementation. When test and implementation disagree, check product rules and architecture; correct the wrong component.
+
+## Flutter
+
+Use unit, widget, and integration tests. Test: success, empty, loading, error, unauthorized, null/malformed data, environment mismatch, navigation protection, WebView failure, protocol parsing.
+
+## Unity
+
+Use Edit Mode and Play Mode tests. Test: protocol serialization, score/timer messages, session validation, null references, scene lifecycle, quit handling, orientation metadata, invalid payloads.
+
+## Firebase
+
+- Functions unit tests and emulator integration tests
+- Firestore rules tests and Storage rules tests
+- Test: unauthenticated access, wrong role, wrong institution, invalid result write, direct medal write, attempt limits, immutable fields, invalid file upload
+
+## Naming
+
+Describe behaviour: `rejects_result_when_session_is_expired`. Avoid `test1`, `works`, `function_test`.
+
+## Review checklist
+
+- [ ] Tests added for new behaviour
+- [ ] Tests pass
+- [ ] Meaningful assertions (not trivial)
+- [ ] Security and edge cases covered
