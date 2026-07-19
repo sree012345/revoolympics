@@ -10,6 +10,9 @@ This document is the official product reference for Revo Olympics. It defines wh
 
 - [Terminology Glossary](./revo_olympics_terminology_glossary.md)
 - [MVP Scope](./revo_olympics_mvp_scope.md)
+- [Competition and Ranking Rules](./revo_olympics_competition_ranking_rules.md)
+- [Result Status Rules](./revo_olympics_result_status_rules.md)
+- [Points Table Examples](./revo_olympics_points_table_examples.md)
 
 ---
 

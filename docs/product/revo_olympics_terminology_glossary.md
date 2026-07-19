@@ -57,3 +57,6 @@ This glossary defines official product terms used across Revo Olympics documenta
 
 - [Product Rules](./revo_olympics_product_rules.md)
 - [MVP Scope](./revo_olympics_mvp_scope.md)
+- [Competition and Ranking Rules](./revo_olympics_competition_ranking_rules.md)
+- [Result Status Rules](./revo_olympics_result_status_rules.md)
+- [Points Table Examples](./revo_olympics_points_table_examples.md)
